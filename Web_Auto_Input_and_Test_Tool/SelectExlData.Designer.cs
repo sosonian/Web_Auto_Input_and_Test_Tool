@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Collections.Generic;
 
-namespace TFI_AMS_WebBot_Film_Music
+namespace Web_Auto_Input_and_Test_Tool
 {
     partial class SelectExlData
     {

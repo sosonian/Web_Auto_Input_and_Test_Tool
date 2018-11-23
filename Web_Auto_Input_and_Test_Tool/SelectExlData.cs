@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TFI_AMS_WebBot_Film_Music
+namespace Web_Auto_Input_and_Test_Tool
 {
     public partial class SelectExlData : Form
     {

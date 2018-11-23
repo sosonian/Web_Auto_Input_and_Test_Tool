@@ -14,7 +14,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using IntExl = Microsoft.Office.Interop.Excel;
 
-namespace TFI_AMS_WebBot_Film_Music
+namespace Web_Auto_Input_and_Test_Tool
 {        
     public partial class MainWindow : Form
     {       
@@ -22,7 +22,8 @@ namespace TFI_AMS_WebBot_Film_Music
         LoginProcess.ChromeModels ChromeMdls = new LoginProcess.ChromeModels();
         ChooseWebDriverForm cWDF = new ChooseWebDriverForm();
         LoadExcel ldExcel = new LoadExcel();
-        InputProcess InputProcess1= new InputProcess();        
+        InputProcess InputProcess1= new InputProcess();
+        ModuleInfomation MI = new ModuleInfomation();
 
         public MainWindow()
         {
@@ -34,25 +35,19 @@ namespace TFI_AMS_WebBot_Film_Music
             IEMdls.SetNewIEKeyforWebBrowserControl(appName);
             cWDF.chromeDriver = ChromeMdls.webDriver;
             cWDF.chooseWebDriver();
+            label1.Text = "Auto Input and Test Target:  " + MI.TargetName;
         }      
         private void button1_Click(object sender, EventArgs e)
-        {
-            if (textBox4.Text == "")
-            {
-                MessageBox.Show("Please enter the URL of Target Page, including'http://'");
-            }
-            else
-            {
+        {          
                 if (cWDF.WebDriverToken == 2)
                 {
                     IEMdls.createIEBrowser();
-                    IEMdls.loginWebPage(textBox4.Text);
+                    IEMdls.loginWebPage(MI.EnteranceUrL);
                 }
                 else if (cWDF.WebDriverToken == 1)
                 {
-                    ChromeMdls.loginWebPage(textBox4.Text);
-                }
-            }
+                    ChromeMdls.loginWebPage(MI.EnteranceUrL);
+                }          
         }
 
         private void button2_Click(object sender, EventArgs e)

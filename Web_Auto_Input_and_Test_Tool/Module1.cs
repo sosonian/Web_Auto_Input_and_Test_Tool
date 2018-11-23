@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TFI_AMS_WebBot_Film_Music
+namespace Web_Auto_Input_and_Test_Tool
 {
     public partial class InputModule
     {
