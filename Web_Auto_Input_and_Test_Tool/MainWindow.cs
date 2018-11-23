@@ -164,7 +164,8 @@ namespace TFI_AMS_WebBot_Film_Music
                 }
                 public void loginComplete(object sender, WebBrowserDocumentCompletedEventArgs e)
                 {
-                    webBrowser1.Navigate("http://61.220.183.22/filmManagement/FI-C-0000000002");
+                    string PageAfterLogin="";
+                    webBrowser1.Navigate(PageAfterLogin);
                 }
             }
             public class ChromeModels

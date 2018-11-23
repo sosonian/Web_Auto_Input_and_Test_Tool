@@ -67,7 +67,7 @@ namespace TFI_AMS_WebBot_Film_Music
         public partial class InputFilmMusic
         {
             public Form SED { get; set; }
-            public DataGridView DGV1 { get; set; }            
+            public DataGridView DGV1 { get; set; }
             List<string> namesInputCells = new List<string>()
             { "系統識別號","單元名稱","曲名","配樂","作曲","作詞","主唱","演奏"};
 
@@ -89,10 +89,10 @@ namespace TFI_AMS_WebBot_Film_Music
                     else if (i < 13)
                     {
                         tb.Location = new Point(DGV1.Left + 2 * tb.Width, (DGV1.Top + DGV1.Height) + (30 * (i - 7) + 10));
-                    }                   
+                    }
 
                     tb.Click += new EventHandler(TextBoxClickEvent);
-                    tb.Tag = "tb"+ i;
+                    tb.Tag = "tb" + i;
                     SED.Controls.Add(tb);
                 }
             }
@@ -111,10 +111,10 @@ namespace TFI_AMS_WebBot_Film_Music
                     {
                         lb.Location = new Point();
                     }
-                  
+
                 }
             }
         }
-        
+
     }
 }

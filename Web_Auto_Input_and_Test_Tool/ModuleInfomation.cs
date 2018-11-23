@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace TFI_AMS_WebBot_Film_Music
 {
-    class ModuleDefaultSetting
+    class ModuleInfomation
     {
+        // The enterrance URL of target page
+        private string EnteranceUrL = "";
+
+        // 
     }
 }
