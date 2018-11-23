@@ -78,6 +78,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InputModule.cs" />
     <Compile Include="Module3.cs" />
     <Compile Include="Module1.cs" />
     <Compile Include="MainWindow.cs">

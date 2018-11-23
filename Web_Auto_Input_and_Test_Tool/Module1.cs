@@ -5,12 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Web_Auto_Input_and_Test_Tool
-{
-    public partial class InputModule
-    {
+{    
        public class Module1 : InputModule
         {
-            public string ModuleName = "FilmMusic";
+            public new string  ModuleName = "FilmMusic";
             
             public class TitleOfColumn
             {
@@ -22,5 +20,5 @@ namespace Web_Auto_Input_and_Test_Tool
             {
             }
         }
-    }
+    
 }

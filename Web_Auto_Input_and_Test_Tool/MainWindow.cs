@@ -238,12 +238,12 @@ namespace Web_Auto_Input_and_Test_Tool
         {
             public void detectTotalNumberOfSector()
             {
-                InputModule.Module1 m1 = new InputModule.Module1();
+                //  InputModule.Module1 m1 = new InputModule.Module1();
 
-                Type mytype = typeof(InputModule.Module1);
-                FieldInfo ModName = mytype.GetField("ModuleName");
-                string c = ModName.GetValue(m1).ToString();
-                Console.WriteLine(c);
+                //  Type mytype = typeof(InputModule.Module1);
+                //  FieldInfo ModName = mytype.GetField("ModuleName");
+                //  string c = ModName.GetValue(m1).ToString();
+                //  Console.WriteLine(c);
 
                 //  int cm = 0;
                 //  Type[] submodles = typeof(InputModule).GetNestedTypes();

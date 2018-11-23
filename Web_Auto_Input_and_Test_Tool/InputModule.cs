@@ -5,10 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Web_Auto_Input_and_Test_Tool
-{                 
-       public class Module4
-        {
-            public string ModuleName = "AuthorityMovieStaffInfo";
-          
-        }
+{
+    public class InputModule
+    {
+        public string ModuleName;
+    }
 }
