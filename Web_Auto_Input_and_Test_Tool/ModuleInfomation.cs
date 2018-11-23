@@ -24,6 +24,11 @@ namespace Web_Auto_Input_and_Test_Tool
         public string PasswordId;
 
         // If have to Login, the HtmlElement Id of submit button:
-        public string SubmitButtonId;
+        public string LoginSubmitButtonId;
+
+        //
+        public Boolean IsPageTheTarget;
+
+
     }
 }

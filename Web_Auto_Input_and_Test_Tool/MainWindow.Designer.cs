@@ -46,7 +46,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(12, 48);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(83, 50);
+            this.button1.Size = new System.Drawing.Size(68, 50);
             this.button1.TabIndex = 0;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
@@ -54,23 +54,25 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(101, 48);
+            this.textBox1.Location = new System.Drawing.Point(86, 48);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(110, 22);
+            this.textBox1.Size = new System.Drawing.Size(140, 22);
             this.textBox1.TabIndex = 2;
+            this.textBox1.Text = "Please Insert User Name";
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(101, 76);
+            this.textBox2.Location = new System.Drawing.Point(86, 76);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(110, 22);
+            this.textBox2.Size = new System.Drawing.Size(140, 22);
             this.textBox2.TabIndex = 3;
+            this.textBox2.Text = "Please Insert Password";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(217, 48);
+            this.button2.Location = new System.Drawing.Point(232, 48);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(83, 50);
+            this.button2.Size = new System.Drawing.Size(68, 50);
             this.button2.TabIndex = 4;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;

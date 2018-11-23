@@ -48,19 +48,18 @@ namespace Web_Auto_Input_and_Test_Tool
                 {
                     ChromeMdls.loginWebPage(MI.EnteranceUrL);
                 }          
-        }
-
+        }       
         private void button2_Click(object sender, EventArgs e)
         {
             if (cWDF.WebDriverToken == 2)
             {
-                IEMdls.loginUp(textBox1, textBox2);
+                IEMdls.loginUp(textBox1.Text, textBox2.Text, MI.UserNameId,MI.PasswordId,MI.LoginSubmitButtonId);
             }
             else if (cWDF.WebDriverToken == 1)
             {
-                ChromeMdls.loginUp(textBox1, textBox2);
+                ChromeMdls.loginUp(textBox1.Text, textBox2.Text, MI.UserNameId, MI.PasswordId, MI.LoginSubmitButtonId);
             }
-        }
+        }   // Begin LoginProcess
         private void button3_Click(object sender, EventArgs e)
         {           
             ldExcel.tb3 = textBox3;
@@ -68,7 +67,7 @@ namespace Web_Auto_Input_and_Test_Tool
             ldExcel.ofd1 = openFileDialog1;
             ldExcel.gv1 = dataGridView1;
             ldExcel.LoadExcelBegin();
-        }
+        }   // Begin LoadExcel
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             ldExcel.selectExlSheet();
@@ -86,7 +85,7 @@ namespace Web_Auto_Input_and_Test_Tool
         public class LoginProcess
         {
             public class IEModels
-            {
+            { 
                 public WebBrowser webBrowser1 = null;
                 public void createIEBrowser()
                 {
@@ -103,11 +102,11 @@ namespace Web_Auto_Input_and_Test_Tool
                 {
                     webBrowser1.Navigate(TargetUrl);
                 }
-                public void loginUp(TextBox tb1, TextBox tb2)
+                public void loginUp(string username, string password, string UsernameInputboxID, string PasswordInputBoxID, string SubmitButtonID)
                 {
-                    webBrowser1.Document.GetElementById("uname").SetAttribute("value", tb1.Text);
-                    webBrowser1.Document.GetElementById("upass").SetAttribute("value", tb2.Text);
-                    webBrowser1.Document.GetElementById("act_signin").InvokeMember("click");
+                    webBrowser1.Document.GetElementById(UsernameInputboxID).SetAttribute("value", username);
+                    webBrowser1.Document.GetElementById(PasswordInputBoxID).SetAttribute("value", password);
+                    webBrowser1.Document.GetElementById(SubmitButtonID).InvokeMember("click");
                     webBrowser1.DocumentCompleted += (sender, e) => loginComplete(sender, e);
                 }
                 public void SetNewIEKeyforWebBrowserControl(string appName)
@@ -172,11 +171,11 @@ namespace Web_Auto_Input_and_Test_Tool
                     webDriver = new ChromeDriver();
                     webDriver.Url = TargetUrl;
                 }
-                public void loginUp(TextBox tb1, TextBox tb2)
+                public void loginUp(string username, string password, string UsernameInputboxID, string PasswordInputBoxID,string SubmitButtonID)
                 {
-                    webDriver.FindElement(By.Id("uname")).SendKeys(tb1.Text);
-                    webDriver.FindElement(By.Id("upass")).SendKeys(tb2.Text);
-                    webDriver.FindElement(By.Id("act_signin")).Click();
+                    webDriver.FindElement(By.Id(UsernameInputboxID)).SendKeys(username);
+                    webDriver.FindElement(By.Id(PasswordInputBoxID)).SendKeys(password);
+                    webDriver.FindElement(By.Id(SubmitButtonID)).Click();
                     WebPageComplete();                    
                 }
                 public void WebPageComplete()
@@ -330,6 +329,9 @@ namespace Web_Auto_Input_and_Test_Tool
                 form2.dataGirdView1Tb = exlTb.Copy();
                 form2.ShowDialog();                
             }                        
-        }      
+        }
+        public class TestReport
+        {
+        }
     }
 }
