@@ -89,7 +89,7 @@
     </Compile>
     <Compile Include="Module2.cs" />
     <Compile Include="Module4.cs" />
-    <Compile Include="ModuleInfomation.cs" />
+    <Compile Include="TestProjectInfomation.cs" />
     <Compile Include="SelectExcelData.cs">
       <SubType>Form</SubType>
     </Compile>

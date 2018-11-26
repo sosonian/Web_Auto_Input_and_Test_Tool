@@ -9,5 +9,7 @@ namespace Web_Auto_Input_and_Test_Tool
     public class InputModule
     {
         public string ModuleName;
+        public int NumberOfInputFields;
+
     }
 }

@@ -22,8 +22,7 @@ namespace Web_Auto_Input_and_Test_Tool
         LoginProcess.ChromeModels ChromeMdls = new LoginProcess.ChromeModels();
         ChooseWebDriverForm cWDF = new ChooseWebDriverForm();
         LoadExcel ldExcel = new LoadExcel();
-        InputProcess InputProcess1= new InputProcess();
-        ModuleInfomation MI = new ModuleInfomation();
+        InputProcess InputProcess1= new InputProcess();      
 
         public MainWindow()
         {
@@ -35,29 +34,29 @@ namespace Web_Auto_Input_and_Test_Tool
             IEMdls.SetNewIEKeyforWebBrowserControl(appName);
             cWDF.chromeDriver = ChromeMdls.webDriver;
             cWDF.chooseWebDriver();
-            label1.Text = "Auto Input and Test Target:  " + MI.TargetName;
+            label1.Text = "Auto Input and Test Target:  " + TestProjectInfomation.TargetName;
         }      
         private void button1_Click(object sender, EventArgs e)
         {          
                 if (cWDF.WebDriverToken == 2)
                 {
                     IEMdls.createIEBrowser();
-                    IEMdls.loginWebPage(MI.EnteranceUrL);
+                    IEMdls.loginWebPage(TestProjectInfomation.EnteranceUrL);
                 }
                 else if (cWDF.WebDriverToken == 1)
                 {
-                    ChromeMdls.loginWebPage(MI.EnteranceUrL);
+                    ChromeMdls.loginWebPage(TestProjectInfomation.EnteranceUrL);
                 }          
         }       
         private void button2_Click(object sender, EventArgs e)
         {
             if (cWDF.WebDriverToken == 2)
             {
-                IEMdls.loginUp(textBox1.Text, textBox2.Text, MI.UserNameId,MI.PasswordId,MI.LoginSubmitButtonId);
+                IEMdls.loginUp(textBox1.Text, textBox2.Text, TestProjectInfomation.UserNameId, TestProjectInfomation.PasswordId, TestProjectInfomation.LoginSubmitButtonId);
             }
             else if (cWDF.WebDriverToken == 1)
             {
-                ChromeMdls.loginUp(textBox1.Text, textBox2.Text, MI.UserNameId, MI.PasswordId, MI.LoginSubmitButtonId);
+                ChromeMdls.loginUp(textBox1.Text, textBox2.Text, TestProjectInfomation.UserNameId, TestProjectInfomation.PasswordId, TestProjectInfomation.LoginSubmitButtonId);
             }
         }   // Begin LoginProcess
         private void button3_Click(object sender, EventArgs e)

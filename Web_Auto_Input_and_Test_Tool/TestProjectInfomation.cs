@@ -6,28 +6,28 @@ using System.Threading.Tasks;
 
 namespace Web_Auto_Input_and_Test_Tool
 {
-    public class ModuleInfomation
+    public static class TestProjectInfomation
     {
         // The enterrance URL of target page
-        public string EnteranceUrL = "http://www.google.com";
+        public static string EnteranceUrL = "http://www.google.com";
 
         // The Name of the Target
-        public string TargetName = "Google";
+        public static string TargetName = "Google";
 
         // Have to Login User and Password to enter the page
-        public Boolean HasLoginFunction;
+        public static Boolean HasLoginFunction;
 
         // If have to Login, the HtmlElement Id of Username inputbox:
-        public string UserNameId;
+        public static string UserNameId;
 
         // If have to Login, the HtmlElement Id of password inputbox:
-        public string PasswordId;
+        public static string PasswordId;
 
         // If have to Login, the HtmlElement Id of submit button:
-        public string LoginSubmitButtonId;
+        public static string LoginSubmitButtonId;
 
         //
-        public Boolean IsPageTheTarget;
+        public static Boolean IsPageTheTarget;
 
 
     }
