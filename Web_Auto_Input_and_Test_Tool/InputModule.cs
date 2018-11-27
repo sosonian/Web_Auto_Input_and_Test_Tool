@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Web_Auto_Input_and_Test_Tool
 {
-    public class InputModule
+    public abstract class InputModule
     {
-        public string ModuleName;
-        public int NumberOfInputFields;
-
+        public abstract string ModuleName { get; }
+        public abstract int NumberOfInputFields { get; }
     }
 }

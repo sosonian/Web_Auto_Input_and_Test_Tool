@@ -235,8 +235,22 @@ namespace Web_Auto_Input_and_Test_Tool
         }
         public class ChooseInputSector
         {
+            
             public void detectTotalNumberOfSector()
             {
+                  IEnumerable<InputModule> exporters = typeof(InputModule).Assembly.GetTypes().Where(t => t.IsSubclassOf(typeof(InputModule)) && !t.IsAbstract).Select(t => (InputModule)Activator.CreateInstance(t));
+                  List<string> ListofNameOfModule = new List<string>();
+                  foreach (var item in exporters)
+                  {
+                    
+
+                    Console.WriteLine(item.ModuleName);
+                    //FieldInfo info = item.GetType().GetField("ModuleName");
+                    //Console.WriteLine(info.GetValue(item));
+                  }
+
+                
+
                 //  InputModule.Module1 m1 = new InputModule.Module1();
 
                 //  Type mytype = typeof(InputModule.Module1);
@@ -248,6 +262,7 @@ namespace Web_Auto_Input_and_Test_Tool
                 //  Type[] submodles = typeof(InputModule).GetNestedTypes();
                 //  cm = submodles.Count();                               
                 //  createListofModule(cm, submodles);
+               
             }
             public void createListofModule(int CountModuleNumber, Type[] CollectionOfModule)
             {

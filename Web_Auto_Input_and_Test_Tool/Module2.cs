@@ -7,18 +7,14 @@ using System.Threading.Tasks;
 namespace Web_Auto_Input_and_Test_Tool
 {
     
-       public class Module2 
+       public class Module2 : InputModule
+       {
+        private string moduleName = "FilmStaff";
+        public override string ModuleName
         {
-            public string ModuleName = "MovieMusic";
-            
-            public class TitleOfColumn
-            {
-            }
-            public class InputMainProcess
-            {
-            }
-            public class RecheckProcess
-            {
-            }
-        }    
+            get { return moduleName; }
+        }
+
+        public new int NumberOfInputFields = 8;
+       }    
 }
