@@ -238,6 +238,7 @@ namespace Web_Auto_Input_and_Test_Tool
             Form ChooseModuleDialog = new Form();
             private List<InputModule> Lister;
             private List<string> ListofNameOfModule = new List<string>();
+
             
             public void getListOfModule()
             {
