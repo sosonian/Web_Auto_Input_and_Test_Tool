@@ -23,7 +23,9 @@ namespace Web_Auto_Input_and_Test_Tool
         ChooseWebDriverForm cWDF = new ChooseWebDriverForm();
         LoadExcel ldExcel = new LoadExcel();
         InputProcess InputProcess1= new InputProcess();
-        //SelectExlData SED = new SelectExlData();
+        public string[,] TitleList;
+
+       
 
         public MainWindow()
         {
@@ -73,12 +75,8 @@ namespace Web_Auto_Input_and_Test_Tool
             ldExcel.selectExlSheet();
         }
         private void button4_Click(object sender, EventArgs e)
-        {
+        {            
             
-            // SED.ShowDialog();
-            ChooseInputSector CIS = new ChooseInputSector();
-            CIS.getListOfModule();
-
         }
        
         public class LoginProcess
@@ -226,15 +224,20 @@ namespace Web_Auto_Input_and_Test_Tool
             {
                 WebDriverToken = 1;
                 f.Dispose();
+                ChooseInputSector CIS = new ChooseInputSector();
+                CIS.getListOfModule();
             }
             public void b2_click(object sender, EventArgs e, Form f)
             {
                 WebDriverToken = 2;
-                f.Dispose();                
+                f.Dispose();
+                ChooseInputSector CIS = new ChooseInputSector();
+                CIS.getListOfModule();
             }
         }
         public class ChooseInputSector
         {
+
             Form ChooseModuleDialog = new Form();
             private List<InputModule> ModuleList = new List<InputModule>();           
             
@@ -299,11 +302,7 @@ namespace Web_Auto_Input_and_Test_Tool
             }
             public void chooseInput(int i)
             {
-                SelectExlData SED = new SelectExlData();
-                
-                //ModuleList.ElementAt(i - 1).TitleOfColumns;
-
-                SED.ShowDialog();
+                //= ModuleList.ElementAt(i - 1).TitleOfColumns;               
             }
 
         }
@@ -317,8 +316,7 @@ namespace Web_Auto_Input_and_Test_Tool
             public IntExl.Application myApp = null;
             public IntExl.Workbook myBook = null;
             public IntExl.Worksheet mySheet = null;
-            public IntExl.Range myRange = null;
-
+            
             public void LoadExcelBegin()
             {                     
                 ofd1.Filter = "Excel Files|*.xlsx; *.xls; *.xlsm";
@@ -336,26 +334,12 @@ namespace Web_Auto_Input_and_Test_Tool
             }
             public void selectExlSheet()
             {                                                                    
-                
+                SelectExlData form2 = new SelectExlData();
+                form2.transData(ExlTB(myBook.Worksheets[cb1.SelectedItem].UsedRange));
+     
                 myBook.Close();
                 myApp.Quit();
-
-                SelectExlData form2 = new SelectExlData();
-                mySheet = myBook.Worksheets[cb1.SelectedItem];
-                myRange = mySheet.UsedRange;
-                form2.transData(ExlTB(myRange));
-
-                // SelectExcelData form2 = new SelectExcelData();
-                // form2.dg1 = gv1;
-                // form2.dataGridView1.DataSource = exlTb;
-                // form2.dataGirdView1Tb = exlTb.Copy();
-                // form2.ShowDialog();                
-            }
-                    
-           // mySheet = myBook.Worksheets[cb1.SelectedItem];
-           // myRange = mySheet.UsedRange;
-                    
-                   
+            }                                    
             public DataTable ExlTB(IntExl.Range myRange)
             {
                 DataTable exlTb = new DataTable();
@@ -383,7 +367,6 @@ namespace Web_Auto_Input_and_Test_Tool
                 }
                 return exlTb;
             }
-
         }
         public class TestReport
         {

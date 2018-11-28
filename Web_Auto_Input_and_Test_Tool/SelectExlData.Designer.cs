@@ -68,6 +68,9 @@ namespace Web_Auto_Input_and_Test_Tool
         {
             public Form SED { get; set; }
             public DataGridView DGV1 { get; set; }
+            public string[,] TitleOfInputField { get; }
+
+
             List<string> namesInputCells = new List<string>()
             { "系統識別號","單元名稱","曲名","配樂","作曲","作詞","主唱","演奏"};
 
@@ -78,10 +81,10 @@ namespace Web_Auto_Input_and_Test_Tool
             }
             public void createTextBox()
             {
-                for (int i = 1; i < namesInputCells.Count + 1; i++)
+                for (int i = 1; i < TitleOfInputField.Length + 1; i++)
                 {
                     TextBox tb = new TextBox();
-
+                   
                     if (i < 7)
                     {
                         tb.Location = new Point(DGV1.Left, (DGV1.Top + DGV1.Height) + (30 * (i - 1) + 10));
@@ -93,6 +96,7 @@ namespace Web_Auto_Input_and_Test_Tool
 
                     tb.Click += new EventHandler(TextBoxClickEvent);
                     tb.Tag = "tb" + i;
+                    tb.Text = TitleOfInputField [0,i-1];
                     SED.Controls.Add(tb);
                 }
             }

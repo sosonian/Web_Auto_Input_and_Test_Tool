@@ -14,7 +14,7 @@ namespace Web_Auto_Input_and_Test_Tool
             get { return moduleName; }    
         }
 
-        private string[,] titleOfColumns = new string[,] {{"NameOfUnit", "單元名稱"},{"NameOfSong","曲名"},{"BGM","配樂"},{"Composing","作曲"},{"Lyric","作詞"},{"MainVocal","主唱"},{"Musician","演奏"}};
+        private string[,] titleOfColumns = new string[,] { {"FilmID","系統識別號" },{"NameOfUnit", "單元名稱"},{"NameOfSong","曲名"},{"BGM","配樂"},{"Composing","作曲"},{"Lyric","作詞"},{"MainVocal","主唱"},{"Musician","演奏"}};
         public override string[,] TitleOfColumns
         {
             get { return titleOfColumns;}

@@ -14,6 +14,7 @@ namespace Web_Auto_Input_and_Test_Tool
     {
         InputFilmMusic IFM = new InputFilmMusic();
         public DataTable dataGirdView1Tb = new DataTable();
+        public string[,] TitleOfInputField;
 
         public SelectExlData()
         {
@@ -30,7 +31,7 @@ namespace Web_Auto_Input_and_Test_Tool
         {
             int cellIndex = dataGridView1.CurrentCell.ColumnIndex;
         }
-
+    
         public void transData(DataTable dt1)
         {
             this.dataGridView1.DataSource = dt1;
