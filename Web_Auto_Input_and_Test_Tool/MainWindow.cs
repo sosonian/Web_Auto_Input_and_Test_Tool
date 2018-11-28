@@ -77,7 +77,7 @@ namespace Web_Auto_Input_and_Test_Tool
             // SelectExlData SED = new SelectExlData();
             // SED.ShowDialog();
             ChooseInputSector CIS = new ChooseInputSector();
-            CIS.detectTotalNumberOfSector();
+            CIS.getListOfModule();
 
         }
        
@@ -190,7 +190,7 @@ namespace Web_Auto_Input_and_Test_Tool
             {
             }
         }
-        public class RecheckProcess
+        public class CheckProcess
         {
         }
         public class ChooseWebDriverForm
@@ -235,48 +235,75 @@ namespace Web_Auto_Input_and_Test_Tool
         }
         public class ChooseInputSector
         {
+            Form ChooseModuleDialog = new Form();
+            private List<InputModule> Lister;
+            private List<string> ListofNameOfModule = new List<string>();
             
-            public void detectTotalNumberOfSector()
+            public void getListOfModule()
             {
                   IEnumerable<InputModule> exporters = typeof(InputModule).Assembly.GetTypes().Where(t => t.IsSubclassOf(typeof(InputModule)) && !t.IsAbstract).Select(t => (InputModule)Activator.CreateInstance(t));
-                  List<string> ListofNameOfModule = new List<string>();
+                  
                   foreach (var item in exporters)
                   {
-                    
-
-                    Console.WriteLine(item.ModuleName);
-                    //FieldInfo info = item.GetType().GetField("ModuleName");
-                    //Console.WriteLine(info.GetValue(item));
+                    Lister.Add(item);
+                    ListofNameOfModule.Add(item.ModuleName);                    
                   }
-
-                
-
-                //  InputModule.Module1 m1 = new InputModule.Module1();
-
-                //  Type mytype = typeof(InputModule.Module1);
-                //  FieldInfo ModName = mytype.GetField("ModuleName");
-                //  string c = ModName.GetValue(m1).ToString();
-                //  Console.WriteLine(c);
-
-                //  int cm = 0;
-                //  Type[] submodles = typeof(InputModule).GetNestedTypes();
-                //  cm = submodles.Count();                               
-                //  createListofModule(cm, submodles);
-               
+                  createForm();
             }
-            public void createListofModule(int CountModuleNumber, Type[] CollectionOfModule)
+            public void createForm()
             {
-                List<string> ListofNameOfModule = new List<string>();
-                foreach (Type type in CollectionOfModule)
-                {
-                    
-                    PropertyInfo ModName = type.GetProperty("ModuleName");
-                    string c = ModName.GetValue(type).ToString();
-
-                    //ListofNameOfModule.Add(ModName.GetValue(type).ToString());
-                    Console.WriteLine(c);
-                }
+                ChooseModuleDialog.StartPosition = FormStartPosition.CenterScreen;
+                ChooseModuleDialog.FormBorderStyle = FormBorderStyle.FixedDialog;                
+                createLable();
+                createButton();
             }
+            public void createLable()
+            {
+                Label l1 = new Label();
+                l1.Text = "Please Choose the Test Module";
+                l1.Size = new Size(200, 30);
+                l1.Location = new Point(10, 10);
+                ChooseModuleDialog.Controls.Add(l1);
+            }
+            public void createButton()
+            {
+                int totalHeight = 0;
+                for (int i = 1; i-1 < ListofNameOfModule.Count; i++)
+                {
+                    if (i == ListofNameOfModule.Count)
+                    {
+                        Button bt = new Button();
+                        bt.Location = new Point(50, 50 + (bt.Height + 10) * (i - 1));
+                        bt.Click += new EventHandler(buttonClickEvent);
+                        bt.Tag = i;
+                        bt.Text = ListofNameOfModule.ElementAt(i - 1);
+                        ChooseModuleDialog.Controls.Add(bt);
+                        totalHeight = 50 + (bt.Height + 10) * (i - 1);                        
+                    }
+                    else
+                    {
+                        Button bt = new Button();
+                        bt.Location = new Point(50, 50 + (bt.Height + 10) * (i - 1));
+                        bt.Click += new EventHandler(buttonClickEvent);
+                        bt.Tag = i;
+                        bt.Text = ListofNameOfModule.ElementAt(i - 1);
+                        ChooseModuleDialog.Controls.Add(bt);
+                    }                                     
+                }
+                ChooseModuleDialog.Size = new Size(200, totalHeight + 100);
+                ChooseModuleDialog.ShowDialog();
+            }
+            public void buttonClickEvent(object sender, EventArgs e)
+            {
+                Button bt = (Button)sender;
+                chooseInput(Convert.ToInt16(bt.Tag));
+                ChooseModuleDialog.Close();                
+            }
+            public void chooseInput(int token)
+            {
+
+            }
+
         }
         public class LoadExcel
         {

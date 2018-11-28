@@ -13,9 +13,12 @@ namespace Web_Auto_Input_and_Test_Tool
         {
             get { return moduleName; }    
         }
-       
-        public new int NumberOfInputFields = 7;
-            //public string[,] TitleOfColumn = new string[7,2] {{"NameOfUnit", "單元名稱"},{"NameOfSong","曲名"},{"BGM","配樂"},{"Composing","作曲"},{"Lyric","作詞"},{"MainVocal","主唱"},{"Musician","演奏"}};            
+
+        private string[,] titleOfColumns = new string[,] {{"NameOfUnit", "單元名稱"},{"NameOfSong","曲名"},{"BGM","配樂"},{"Composing","作曲"},{"Lyric","作詞"},{"MainVocal","主唱"},{"Musician","演奏"}};
+        public override string[,] TitleOfColumns
+        {
+            get { return titleOfColumns;}
+        }
     }
     
 }

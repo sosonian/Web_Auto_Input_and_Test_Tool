@@ -6,15 +6,19 @@ using System.Threading.Tasks;
 
 namespace Web_Auto_Input_and_Test_Tool
 {
-    
-       public class Module2 : InputModule
-       {
+
+    public class Module2 : InputModule
+    {
         private string moduleName = "FilmStaff";
         public override string ModuleName
         {
             get { return moduleName; }
         }
 
-        public new int NumberOfInputFields = 8;
-       }    
+        private string[,] titleOfColumns = new string[,] { };
+        public override string[,] TitleOfColumns
+        {
+            get { return titleOfColumns; }
+        }
+    }    
 }

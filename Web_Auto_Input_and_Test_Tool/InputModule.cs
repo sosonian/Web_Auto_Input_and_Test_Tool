@@ -9,6 +9,6 @@ namespace Web_Auto_Input_and_Test_Tool
     public abstract class InputModule
     {
         public abstract string ModuleName { get; }
-        public abstract int NumberOfInputFields { get; }
+        public abstract string[,] TitleOfColumns { get; }
     }
 }

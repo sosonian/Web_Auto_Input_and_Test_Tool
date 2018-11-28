@@ -14,6 +14,10 @@ namespace Web_Auto_Input_and_Test_Tool
             get { return moduleName; }
         }
 
-        public new int NumberOfInputFields = 5;
-       }   
+        private string[,] titleOfColumns = new string[,] { };
+        public override string[,] TitleOfColumns
+        {
+            get { return titleOfColumns; }
+        }
+    }   
 }
