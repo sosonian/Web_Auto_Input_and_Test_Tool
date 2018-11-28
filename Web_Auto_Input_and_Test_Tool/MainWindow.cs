@@ -316,8 +316,9 @@ namespace Web_Auto_Input_and_Test_Tool
 
             public IntExl.Application myApp = null;
             public IntExl.Workbook myBook = null;
-            public IntExl.Worksheet mySheet = null;           
-           
+            public IntExl.Worksheet mySheet = null;
+            public IntExl.Range myRange = null;
+
             public void LoadExcelBegin()
             {                     
                 ofd1.Filter = "Excel Files|*.xlsx; *.xls; *.xlsm";
@@ -334,48 +335,55 @@ namespace Web_Auto_Input_and_Test_Tool
                 }
             }
             public void selectExlSheet()
-            {               
-                DataTable exlTb = new DataTable();
-                IntExl.Range myRange = null;
+            {                                                                    
                 
-
-                mySheet = myBook.Worksheets[cb1.SelectedItem];
-                myRange = mySheet.UsedRange;
-                int ColCnt = myRange.Columns.Count;
-                int RowCnt = myRange.Rows.Count;
-                object[,] tempData = new object[1, 1];
-                tempData = myRange.Value;
-                string[] tArray = new string[ColCnt-1];
-
-                for (int i = 0; i < ColCnt-1; i++)
-                {
-                    tArray[i] = Convert.ToString(tempData[1,i+1]);
-                }
-                for (int i = 0; i < ColCnt-1; i++)
-                {                    
-                    exlTb.Columns.Add(tArray[i]);
-                }
-                for (int x = 0; x < RowCnt-1; x++)
-                {
-                    for (int i = 0; i < ColCnt-1; i++)
-                    {
-                        tArray[i] = Convert.ToString(tempData[x+2, i+1]);
-                    }
-                    exlTb.Rows.Add(tArray);
-                }
-
                 myBook.Close();
                 myApp.Quit();
 
                 SelectExlData form2 = new SelectExlData();
-                form2.transData(exlTb);
+                mySheet = myBook.Worksheets[cb1.SelectedItem];
+                myRange = mySheet.UsedRange;
+                form2.transData(ExlTB(myRange));
 
                 // SelectExcelData form2 = new SelectExcelData();
                 // form2.dg1 = gv1;
                 // form2.dataGridView1.DataSource = exlTb;
                 // form2.dataGirdView1Tb = exlTb.Copy();
                 // form2.ShowDialog();                
-            }                        
+            }
+                    
+           // mySheet = myBook.Worksheets[cb1.SelectedItem];
+           // myRange = mySheet.UsedRange;
+                    
+                   
+            public DataTable ExlTB(IntExl.Range myRange)
+            {
+                DataTable exlTb = new DataTable();
+                object[,] tempData = new object[1, 1];
+                int ColCnt = myRange.Columns.Count;
+                int RowCnt = myRange.Rows.Count;
+                tempData = myRange.Value;
+                string[] tArray = new string[ColCnt - 1];
+
+                for (int i = 0; i<ColCnt - 1; i++)
+                {
+                        tArray[i] = Convert.ToString(tempData[1, i + 1]);
+                }
+                for (int i = 0; i<ColCnt - 1; i++)
+                {
+                        exlTb.Columns.Add(tArray[i]);
+                }
+                for (int x = 0; x<RowCnt - 1; x++)
+                {
+                        for (int i = 0; i<ColCnt - 1; i++)
+                        {
+                            tArray[i] = Convert.ToString(tempData[x + 2, i + 1]);
+                        }
+                        exlTb.Rows.Add(tArray);
+                }
+                return exlTb;
+            }
+
         }
         public class TestReport
         {
