@@ -236,18 +236,14 @@ namespace Web_Auto_Input_and_Test_Tool
         public class ChooseInputSector
         {
             Form ChooseModuleDialog = new Form();
-            private List<InputModule> Lister;
-            private List<string> ListofNameOfModule = new List<string>();
-
+            private List<InputModule> ModuleList = new List<InputModule>();           
             
             public void getListOfModule()
             {
-                  IEnumerable<InputModule> exporters = typeof(InputModule).Assembly.GetTypes().Where(t => t.IsSubclassOf(typeof(InputModule)) && !t.IsAbstract).Select(t => (InputModule)Activator.CreateInstance(t));
-                  
+                  IEnumerable<InputModule> exporters = typeof(InputModule).Assembly.GetTypes().Where(t => t.IsSubclassOf(typeof(InputModule)) && !t.IsAbstract).Select(t => (InputModule)Activator.CreateInstance(t));                 
                   foreach (var item in exporters)
                   {
-                    Lister.Add(item);
-                    ListofNameOfModule.Add(item.ModuleName);                    
+                    ModuleList.Add(item);                                        
                   }
                   createForm();
             }
@@ -269,15 +265,15 @@ namespace Web_Auto_Input_and_Test_Tool
             public void createButton()
             {
                 int totalHeight = 0;
-                for (int i = 1; i-1 < ListofNameOfModule.Count; i++)
+                for (int i = 1; i-1 < ModuleList.Count; i++)
                 {
-                    if (i == ListofNameOfModule.Count)
+                    if (i == ModuleList.Count)
                     {
                         Button bt = new Button();
                         bt.Location = new Point(50, 50 + (bt.Height + 10) * (i - 1));
                         bt.Click += new EventHandler(buttonClickEvent);
                         bt.Tag = i;
-                        bt.Text = ListofNameOfModule.ElementAt(i - 1);
+                        bt.Text = ModuleList.ElementAt(i - 1).ModuleName;
                         ChooseModuleDialog.Controls.Add(bt);
                         totalHeight = 50 + (bt.Height + 10) * (i - 1);                        
                     }
@@ -287,22 +283,27 @@ namespace Web_Auto_Input_and_Test_Tool
                         bt.Location = new Point(50, 50 + (bt.Height + 10) * (i - 1));
                         bt.Click += new EventHandler(buttonClickEvent);
                         bt.Tag = i;
-                        bt.Text = ListofNameOfModule.ElementAt(i - 1);
+                        bt.Text = ModuleList.ElementAt(i - 1).ModuleName;
                         ChooseModuleDialog.Controls.Add(bt);
                     }                                     
                 }
+                
+                // Need to improve 
                 ChooseModuleDialog.Size = new Size(200, totalHeight + 100);
                 ChooseModuleDialog.ShowDialog();
             }
             public void buttonClickEvent(object sender, EventArgs e)
             {
                 Button bt = (Button)sender;
-                chooseInput(Convert.ToInt16(bt.Tag));
-                ChooseModuleDialog.Close();                
+                chooseInput(Convert.ToInt16(bt.Tag));                
             }
-            public void chooseInput(int token)
+            public void chooseInput(int i)
             {
+                SelectExlData SED = new SelectExlData();
+                
+                //ModuleList.ElementAt(i - 1).TitleOfColumns;
 
+                SED.ShowDialog();
             }
 
         }
