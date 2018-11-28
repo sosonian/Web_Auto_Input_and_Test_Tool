@@ -13,6 +13,7 @@ namespace Web_Auto_Input_and_Test_Tool
     public partial class SelectExlData : Form
     {
         InputFilmMusic IFM = new InputFilmMusic();
+        public DataTable dataGirdView1Tb = new DataTable();
 
         public SelectExlData()
         {
@@ -23,12 +24,18 @@ namespace Web_Auto_Input_and_Test_Tool
         }
         private void SelectExlData_Load(object sender, EventArgs e)
         {
-
+            
         }
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int cellIndex = dataGridView1.CurrentCell.ColumnIndex;
+        }
 
+        public void transData(DataTable dt1)
+        {
+            this.dataGridView1.DataSource = dt1;
+            this.dataGirdView1Tb = dt1.Copy();
+            this.ShowDialog();
         }
 
         public partial class InputFilmMusic

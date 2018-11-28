@@ -22,7 +22,8 @@ namespace Web_Auto_Input_and_Test_Tool
         LoginProcess.ChromeModels ChromeMdls = new LoginProcess.ChromeModels();
         ChooseWebDriverForm cWDF = new ChooseWebDriverForm();
         LoadExcel ldExcel = new LoadExcel();
-        InputProcess InputProcess1= new InputProcess();      
+        InputProcess InputProcess1= new InputProcess();
+        //SelectExlData SED = new SelectExlData();
 
         public MainWindow()
         {
@@ -73,8 +74,7 @@ namespace Web_Auto_Input_and_Test_Tool
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            // InputProcess1.mainProcess(1);
-            // SelectExlData SED = new SelectExlData();
+            
             // SED.ShowDialog();
             ChooseInputSector CIS = new ChooseInputSector();
             CIS.getListOfModule();
@@ -338,6 +338,7 @@ namespace Web_Auto_Input_and_Test_Tool
                 DataTable exlTb = new DataTable();
                 IntExl.Range myRange = null;
                 
+
                 mySheet = myBook.Worksheets[cb1.SelectedItem];
                 myRange = mySheet.UsedRange;
                 int ColCnt = myRange.Columns.Count;
@@ -366,11 +367,14 @@ namespace Web_Auto_Input_and_Test_Tool
                 myBook.Close();
                 myApp.Quit();
 
-                SelectExcelData form2 = new SelectExcelData();
-                form2.dg1 = gv1;
-                form2.dataGridView1.DataSource = exlTb;
-                form2.dataGirdView1Tb = exlTb.Copy();
-                form2.ShowDialog();                
+                SelectExlData form2 = new SelectExlData();
+                form2.transData(exlTb);
+
+                // SelectExcelData form2 = new SelectExcelData();
+                // form2.dg1 = gv1;
+                // form2.dataGridView1.DataSource = exlTb;
+                // form2.dataGirdView1Tb = exlTb.Copy();
+                // form2.ShowDialog();                
             }                        
         }
         public class TestReport
