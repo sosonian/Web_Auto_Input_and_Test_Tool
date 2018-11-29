@@ -340,7 +340,7 @@ namespace Web_Auto_Input_and_Test_Tool
                 SelectExlData.InputFieldControls IFM = new SelectExlData.InputFieldControls();
                 IFM.SED = form2;
                 IFM.TitleOfInputField = m1.TitleList;
-                IFM.createLayout();
+                IFM.createControls();
 
                 form2.ShowDialog();
                 myBook.Close();

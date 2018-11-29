@@ -69,49 +69,44 @@ namespace Web_Auto_Input_and_Test_Tool
             public SelectExlData SED { get; set; }
             public string[,] TitleOfInputField { get; set; }
       
-            public void createLayout()
+            public void createControls()
             {
-                createTextBox();
-                           
-            }
-            public void createTextBox()
-            {               
-                for (int i = 1; i < TitleOfInputField.Length/2 + 1; i++)
+                for (int i = 1; i < TitleOfInputField.Length / 2 + 1; i++)
                 {
                     TextBox tb = new TextBox();
-                   
+                    Label lb = new Label();
+
                     if (i < 7)
                     {
                         tb.Location = new Point(SED.dataGridView1.Left, (SED.dataGridView1.Top + SED.dataGridView1.Height) + (30 * (i - 1) + 10));
+                        lb.Location = new Point(tb.Left+tb.Width+10, tb.Top + 5);
                     }
                     else if (i < 13)
                     {
-                        tb.Location = new Point(SED.dataGridView1.Left + 2 * tb.Width, (SED.dataGridView1.Top + SED.dataGridView1.Height) + (30 * (i - 7) + 10));
+                        tb.Location = new Point(SED.dataGridView1.Left + 2 * (tb.Width+10), (SED.dataGridView1.Top + SED.dataGridView1.Height) + (30 * (i - 7) + 10));
+                        lb.Location = new Point(tb.Left + tb.Width + 10, tb.Top + 5);
+                    }
+                    else if (i < 19)
+                    {
+                        tb.Location = new Point(SED.dataGridView1.Left + 3 * (tb.Width + 10), (SED.dataGridView1.Top + SED.dataGridView1.Height) + (30 * (i - 7) + 10));
+                        lb.Location = new Point(tb.Left + tb.Width + 10, tb.Top + 5);
+                    }
+                    else if (i < 25)
+                    {
+                        tb.Location = new Point(SED.dataGridView1.Left + 3 * (tb.Width + 10), (SED.dataGridView1.Top + SED.dataGridView1.Height) + (30 * (i - 7) + 10));
+                        lb.Location = new Point(tb.Left + tb.Width + 10, tb.Top + 5);
                     }
 
                     tb.Click += new EventHandler(TextBoxClickEvent);
-                    tb.Tag = "tb" + i;
-                    tb.Text = TitleOfInputField[i-1,0];
-                    SED.Controls.Add(tb);
-                }                
-            }
-            public void createLabel()
-            {
-                for (int i = 1; i < TitleOfInputField.Length/2 + 1; i++)
-                {
-                    Label lb = new Label();
-                    lb.Text = TitleOfInputField[i - 1, 1]; 
+                    tb.Tag = i;
+                    tb.Text = TitleOfInputField[i - 1, 0];
+                    lb.Tag = i;
+                    lb.Text = TitleOfInputField[i - 1, 1];
 
-                    if (i < 7)
-                    {
-                        lb.Location = new Point();
-                    }
-                    else if (i < 13)
-                    {
-                        lb.Location = new Point();
-                    }
+                    SED.Controls.Add(tb);
+                    SED.Controls.Add(lb);
                 }
-            }
+            }       
         }
     }
 }

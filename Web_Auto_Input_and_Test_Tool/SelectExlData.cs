@@ -11,11 +11,9 @@ using System.Windows.Forms;
 namespace Web_Auto_Input_and_Test_Tool
 {
     public partial class SelectExlData : Form
-    {
-        
+    {       
         public DataTable dataGirdView1Tb = new DataTable();
-        
-    
+            
         public SelectExlData()
         {
             InitializeComponent();                      
@@ -46,7 +44,6 @@ namespace Web_Auto_Input_and_Test_Tool
 
             }
         }
-
-       
+      
     }
 }
