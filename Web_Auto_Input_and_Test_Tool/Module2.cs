@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Web_Auto_Input_and_Test_Tool
 {
-
     public class Module2 : InputModule
     {
         private string moduleName = "FilmStaff";
@@ -14,7 +13,6 @@ namespace Web_Auto_Input_and_Test_Tool
         {
             get { return moduleName; }
         }
-
         private string[,] titleOfColumns = new string[,] { };
         public override string[,] TitleOfColumns
         {

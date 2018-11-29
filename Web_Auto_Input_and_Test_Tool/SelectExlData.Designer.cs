@@ -58,7 +58,7 @@ namespace Web_Auto_Input_and_Test_Tool
             this.Load += new System.EventHandler(this.SelectExlData_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
-
+           
         }
 
         #endregion
@@ -66,46 +66,41 @@ namespace Web_Auto_Input_and_Test_Tool
 
         public partial class InputFilmMusic
         {
-            public Form SED { get; set; }
-            public DataGridView DGV1 { get; set; }
-            public string[,] TitleOfInputField { get; }
-
-
-            List<string> namesInputCells = new List<string>()
-            { "系統識別號","單元名稱","曲名","配樂","作曲","作詞","主唱","演奏"};
-
+            public SelectExlData SED { get; set; }
+            public string[,] TitleOfInputField { get; set; }
+      
             public void createLayout()
             {
                 createTextBox();
                 // createLabel();                
             }
             public void createTextBox()
-            {
-                for (int i = 1; i < TitleOfInputField.Length + 1; i++)
+            {               
+                for (int i = 1; i < TitleOfInputField.Length/2 + 1; i++)
                 {
                     TextBox tb = new TextBox();
                    
                     if (i < 7)
                     {
-                        tb.Location = new Point(DGV1.Left, (DGV1.Top + DGV1.Height) + (30 * (i - 1) + 10));
+                        tb.Location = new Point(SED.dataGridView1.Left, (SED.dataGridView1.Top + SED.dataGridView1.Height) + (30 * (i - 1) + 10));
                     }
                     else if (i < 13)
                     {
-                        tb.Location = new Point(DGV1.Left + 2 * tb.Width, (DGV1.Top + DGV1.Height) + (30 * (i - 7) + 10));
+                        tb.Location = new Point(SED.dataGridView1.Left + 2 * tb.Width, (SED.dataGridView1.Top + SED.dataGridView1.Height) + (30 * (i - 7) + 10));
                     }
 
                     tb.Click += new EventHandler(TextBoxClickEvent);
                     tb.Tag = "tb" + i;
-                    tb.Text = TitleOfInputField [0,i-1];
+                    tb.Text = TitleOfInputField[i-1,0];
                     SED.Controls.Add(tb);
-                }
+                }                
             }
             public void createLabel()
             {
-                for (int i = 1; i < namesInputCells.Count + 1; i++)
+                for (int i = 1; i < TitleOfInputField.Length/2 + 1; i++)
                 {
                     Label lb = new Label();
-                    lb.Text = namesInputCells[i - 1];
+                    lb.Text = TitleOfInputField[i - 1, 1]; 
 
                     if (i < 7)
                     {
@@ -115,10 +110,8 @@ namespace Web_Auto_Input_and_Test_Tool
                     {
                         lb.Location = new Point();
                     }
-
                 }
             }
         }
-
     }
 }

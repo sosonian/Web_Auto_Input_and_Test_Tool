@@ -25,16 +25,16 @@ namespace Web_Auto_Input_and_Test_Tool
         InputProcess InputProcess1= new InputProcess();
         public string[,] TitleList;
 
-       
-
         public MainWindow()
         {
             InitializeComponent();
         }
+        
         private void Form1_Load(object sender, EventArgs e)
         {
             var appName = System.Diagnostics.Process.GetCurrentProcess().ProcessName + ".exe";
             IEMdls.SetNewIEKeyforWebBrowserControl(appName);
+            cWDF.m1 = this;
             cWDF.chromeDriver = ChromeMdls.webDriver;
             cWDF.chooseWebDriver();
             label1.Text = "Auto Input and Test Target:  " + TestProjectInfomation.TargetName;
@@ -64,19 +64,17 @@ namespace Web_Auto_Input_and_Test_Tool
         }   // Begin LoginProcess
         private void button3_Click(object sender, EventArgs e)
         {           
-            ldExcel.tb3 = textBox3;
-            ldExcel.cb1 = comboBox1;
-            ldExcel.ofd1 = openFileDialog1;
-            ldExcel.gv1 = dataGridView1;
+            ldExcel.m1 = this;     
             ldExcel.LoadExcelBegin();
         }   // Begin LoadExcel
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {           
             ldExcel.selectExlSheet();
+            
         }
         private void button4_Click(object sender, EventArgs e)
-        {            
-            
+        {
+           
         }
        
         public class LoginProcess
@@ -193,6 +191,7 @@ namespace Web_Auto_Input_and_Test_Tool
         }
         public class ChooseWebDriverForm
         {
+            public MainWindow m1 { get; set; }
             public IWebDriver chromeDriver { get; set;}
             public int WebDriverToken = 0;
             public void chooseWebDriver()
@@ -225,6 +224,7 @@ namespace Web_Auto_Input_and_Test_Tool
                 WebDriverToken = 1;
                 f.Dispose();
                 ChooseInputSector CIS = new ChooseInputSector();
+                CIS.m1 = m1;
                 CIS.getListOfModule();
             }
             public void b2_click(object sender, EventArgs e, Form f)
@@ -232,12 +232,13 @@ namespace Web_Auto_Input_and_Test_Tool
                 WebDriverToken = 2;
                 f.Dispose();
                 ChooseInputSector CIS = new ChooseInputSector();
+                CIS.m1 = m1;
                 CIS.getListOfModule();
             }
         }
         public class ChooseInputSector
         {
-
+            public MainWindow m1 { get; set; }
             Form ChooseModuleDialog = new Form();
             private List<InputModule> ModuleList = new List<InputModule>();           
             
@@ -301,42 +302,47 @@ namespace Web_Auto_Input_and_Test_Tool
                 chooseInput(Convert.ToInt16(bt.Tag));                
             }
             public void chooseInput(int i)
-            {
-                //= ModuleList.ElementAt(i - 1).TitleOfColumns;               
+            {            
+                m1.TitleList = ModuleList.ElementAt(i - 1).TitleOfColumns;
+                m1.label2.Text = "Choose Module:" + ModuleList.ElementAt(i - 1).ModuleName;                    
             }
-
         }
         public class LoadExcel
         {
-            public TextBox tb3 { get; set; }
-            public ComboBox cb1 { get; set; }
-            public OpenFileDialog ofd1 { get; set; }
-            public DataGridView gv1 { get; set; }
-
+            public MainWindow m1 { get; set; }
+            
             public IntExl.Application myApp = null;
             public IntExl.Workbook myBook = null;
             public IntExl.Worksheet mySheet = null;
             
             public void LoadExcelBegin()
             {                     
-                ofd1.Filter = "Excel Files|*.xlsx; *.xls; *.xlsm";
-                if (ofd1.ShowDialog() == DialogResult.OK)
+                m1.openFileDialog1.Filter = "Excel Files|*.xlsx; *.xls; *.xlsm";
+                if (m1.openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    tb3.Text = ofd1.FileName;
-                    cb1.Items.Clear();
+                    m1.textBox3.Text = m1.openFileDialog1.FileName;
+                    m1.comboBox1.Items.Clear();
                     myApp = new IntExl.Application();
-                    myBook = myApp.Workbooks.Open(tb3.Text);
+                    myBook = myApp.Workbooks.Open(m1.textBox3.Text);
                     foreach (IntExl.Worksheet everySheet in myBook.Sheets)
                     {
-                        cb1.Items.Add(everySheet.Name);
+                        m1.comboBox1.Items.Add(everySheet.Name);
                     }
                 }
             }
             public void selectExlSheet()
-            {                                                                    
+            {                
                 SelectExlData form2 = new SelectExlData();
-                form2.transData(ExlTB(myBook.Worksheets[cb1.SelectedItem].UsedRange));
-     
+                // once form instance have been created, before the process InitializeComponent(); has completed, the next line would never been executed.
+                
+                form2.transData(ExlTB(myBook.Worksheets[m1.comboBox1.SelectedItem].UsedRange));
+
+                SelectExlData.InputFilmMusic IFM = new SelectExlData.InputFilmMusic();
+                IFM.SED = form2;
+                IFM.TitleOfInputField = m1.TitleList;
+                IFM.createLayout();
+
+                form2.ShowDialog();
                 myBook.Close();
                 myApp.Quit();
             }                                    
