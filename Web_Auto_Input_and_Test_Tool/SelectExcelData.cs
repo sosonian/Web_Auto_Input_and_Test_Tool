@@ -90,8 +90,7 @@ namespace Web_Auto_Input_and_Test_Tool
                 selectToken = st;                
             }
             public void transDataBackToMain()
-            {
-               
+            {              
                for (int i= s1.dataGirdView1Tb.Columns.Count-1; i>-1; i--)
                 {
                     if (SelectColumnIndex().IndexOf(i) == -1)

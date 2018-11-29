@@ -333,15 +333,17 @@ namespace Web_Auto_Input_and_Test_Tool
             public void selectExlSheet()
             {                
                 SelectExlData form2 = new SelectExlData();
-                // once form instance have been created, before the process InitializeComponent(); has completed, the next line would never been executed.
+                // once form instance have been created, before completion of the process InitializeComponent(), the next line would never been executed.
                 
                 form2.transData(ExlTB(myBook.Worksheets[m1.comboBox1.SelectedItem].UsedRange));
 
                 SelectExlData.InputFieldControls IFM = new SelectExlData.InputFieldControls();
                 IFM.SED = form2;
+                IFM.m1 = m1;
                 IFM.TitleOfInputField = m1.TitleList;
                 IFM.createControls();
 
+                form2.IFD = IFM;
                 form2.ShowDialog();
                 myBook.Close();
                 myApp.Quit();
