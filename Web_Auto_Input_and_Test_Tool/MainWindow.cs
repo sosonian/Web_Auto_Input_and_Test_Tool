@@ -337,7 +337,7 @@ namespace Web_Auto_Input_and_Test_Tool
                 
                 form2.transData(ExlTB(myBook.Worksheets[m1.comboBox1.SelectedItem].UsedRange));
 
-                SelectExlData.InputFilmMusic IFM = new SelectExlData.InputFilmMusic();
+                SelectExlData.InputFieldControls IFM = new SelectExlData.InputFieldControls();
                 IFM.SED = form2;
                 IFM.TitleOfInputField = m1.TitleList;
                 IFM.createLayout();

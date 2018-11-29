@@ -64,7 +64,7 @@ namespace Web_Auto_Input_and_Test_Tool
         #endregion
         private DataGridView dataGridView1;
 
-        public partial class InputFilmMusic
+        public partial class InputFieldControls
         {
             public SelectExlData SED { get; set; }
             public string[,] TitleOfInputField { get; set; }
@@ -72,7 +72,7 @@ namespace Web_Auto_Input_and_Test_Tool
             public void createLayout()
             {
                 createTextBox();
-                // createLabel();                
+                           
             }
             public void createTextBox()
             {               

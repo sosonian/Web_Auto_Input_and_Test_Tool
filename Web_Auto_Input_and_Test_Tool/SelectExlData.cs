@@ -32,11 +32,10 @@ namespace Web_Auto_Input_and_Test_Tool
         public void transData(DataTable dt1)
         {
             this.dataGridView1.DataSource = dt1;
-            this.dataGirdView1Tb = dt1.Copy();
-            
+            this.dataGirdView1Tb = dt1.Copy();           
         }
 
-        public partial class InputFilmMusic
+        public partial class InputFieldControls
         {                      
             public void TextBoxClickEvent(object sender, EventArgs e)
             {
