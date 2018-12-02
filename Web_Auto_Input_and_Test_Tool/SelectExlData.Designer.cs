@@ -82,6 +82,7 @@ namespace Web_Auto_Input_and_Test_Tool
             public SelectExlData SED { get; set; }
             public string[,] TitleOfInputField { get; set; }
             public List<TextBox> tbList = new List<TextBox>();
+            public List<Label> lbList = new List<Label>();
 
             public void createControls()
             {
@@ -118,6 +119,7 @@ namespace Web_Auto_Input_and_Test_Tool
                     lb.Text = TitleOfInputField[i - 1, 1];
 
                     tbList.Add(tb);
+                    lbList.Add(lb);
                     SED.Controls.Add(tb);
                     SED.Controls.Add(lb);
                 }

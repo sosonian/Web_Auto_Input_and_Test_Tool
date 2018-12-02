@@ -262,7 +262,7 @@ namespace Web_Auto_Input_and_Test_Tool
             public void createLable(Form f)
             {
                 Label l1 = new Label();
-                l1.Text = "Please Choose the fuck Module";
+                l1.Text = "Please Choose the input Module";
                 l1.Size = new Size(200, 30);
                 l1.Location = new Point(10, 10);
                 f.Controls.Add(l1);
@@ -313,7 +313,7 @@ namespace Web_Auto_Input_and_Test_Tool
             public void chooseInput(int i)
             {            
                 m1.TitleList = ModuleList.ElementAt(i - 1).TitleOfColumns;
-                m1.label2.Text = "Choose Module:" + ModuleList.ElementAt(i - 1).ModuleName;                
+                m1.label2.Text = "Choose Module: " + ModuleList.ElementAt(i - 1).ModuleName;                
             }
         }
         public class LoadExcel

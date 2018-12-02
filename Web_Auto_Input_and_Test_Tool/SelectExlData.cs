@@ -35,7 +35,7 @@ namespace Web_Auto_Input_and_Test_Tool
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            IFD.sendDataBackToMain();
+            IFD.sendDataBackToMain1();
         }
 
         public partial class InputFieldControls
@@ -70,27 +70,30 @@ namespace Web_Auto_Input_and_Test_Tool
                     }
                 }
             }
-            public void sendDataBackToMain()
+            public void sendDataBackToMain1() //copy data by looping throught cells of DataGridView, not very efficient.
             {
                 List<string> ColumnNameList = new List<string>();
-                for (int i = 0; i < SelectColumnIndex().Count(); i++)
+                for (int i = 0; i < tbList.Count(); i++)
                 {
-                    //SED.DGVTb.Columns.Add(SelectColumnIndex().ElementAt(i));
+                    SED.DGVTb.Columns.Add(lbList.ElementAt(i).Text);                   
                 }
-                string[] NameArray = ColumnNameList.ToArray();
-                DataTable exportTable = SED.DGVTb.DefaultView.ToTable(false, NameArray);
-
-                m1.dataGridView1.DataSource = exportTable;
+                for (int j = 1; j < SED.dataGridView1.Rows.Count; j++)
+                {
+                    string[] tArray = new string[tbList.Count()];
+                    for (int i = 0; i < tbList.Count(); i++)
+                    {
+                        string temp = Convert.ToString(SED.dataGridView1.Rows[j].Cells[Convert.ToInt16(tbList.ElementAt(i).Text)].Value);
+                        tArray[i] = temp;
+                    }
+                    SED.DGVTb.Rows.Add(tArray);
+                }
+                m1.dataGridView1.DataSource = SED.DGVTb;
                 SED.Close();
             }
-            public List<int> SelectColumnIndex()
+            public void sendDataBackToMain2()
             {
-                List<int> result = new List<int>();
-                foreach (TextBox TB in tbList)
-                {                    
-                    result.Add(Convert.ToInt16(TB.Text));
-                }
-                return result;
+
+
             }
         }       
     }
