@@ -12,7 +12,7 @@ namespace Web_Auto_Input_and_Test_Tool
 {
     public partial class SelectExlData : Form
     {       
-        public DataTable dataGirdView1Tb = new DataTable();
+        public DataTable DGVTb = new DataTable();
         
         public InputFieldControls IFD { get; set; }
         
@@ -31,13 +31,12 @@ namespace Web_Auto_Input_and_Test_Tool
         public void transData(DataTable dt1)
         {
             this.dataGridView1.DataSource = dt1;
-            this.dataGirdView1Tb = dt1.Copy();           
+            //this.DGVTb = dt1.Copy();           
         }
         private void button1_Click(object sender, EventArgs e)
         {
             IFD.sendDataBackToMain();
         }
-
 
         public partial class InputFieldControls
         {
@@ -73,14 +72,15 @@ namespace Web_Auto_Input_and_Test_Tool
             }
             public void sendDataBackToMain()
             {
-                for (int i = SED.dataGirdView1Tb.Columns.Count - 1; i > -1; i--)
+                List<string> ColumnNameList = new List<string>();
+                for (int i = 0; i < SelectColumnIndex().Count(); i++)
                 {
-                    if (SelectColumnIndex().IndexOf(i) == -1)
-                    {
-                        SED.dataGirdView1Tb.Columns.RemoveAt(i);
-                    }
+                    //SED.DGVTb.Columns.Add(SelectColumnIndex().ElementAt(i));
                 }
-                m1.dataGridView1.DataSource = SED.dataGirdView1Tb;
+                string[] NameArray = ColumnNameList.ToArray();
+                DataTable exportTable = SED.DGVTb.DefaultView.ToTable(false, NameArray);
+
+                m1.dataGridView1.DataSource = exportTable;
                 SED.Close();
             }
             public List<int> SelectColumnIndex()
@@ -92,8 +92,6 @@ namespace Web_Auto_Input_and_Test_Tool
                 }
                 return result;
             }
-        }
-
-        
+        }       
     }
 }

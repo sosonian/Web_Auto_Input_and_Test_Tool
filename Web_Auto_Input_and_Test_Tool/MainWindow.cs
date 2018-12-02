@@ -20,7 +20,7 @@ namespace Web_Auto_Input_and_Test_Tool
     {       
         LoginProcess.IEModels IEMdls = new LoginProcess.IEModels();
         LoginProcess.ChromeModels ChromeMdls = new LoginProcess.ChromeModels();
-        ChooseWebDriverForm cWDF = new ChooseWebDriverForm();
+        ChooseWebDriver cWDF = new ChooseWebDriver();
         LoadExcel ldExcel = new LoadExcel();
         InputProcess InputProcess1= new InputProcess();
         public string[,] TitleList;
@@ -36,7 +36,7 @@ namespace Web_Auto_Input_and_Test_Tool
             IEMdls.SetNewIEKeyforWebBrowserControl(appName);
             cWDF.m1 = this;
             cWDF.chromeDriver = ChromeMdls.webDriver;
-            cWDF.chooseWebDriver();
+            cWDF.createForm();
             label1.Text = "Auto Input and Test Target:  " + TestProjectInfomation.TargetName;
         }      
         private void button1_Click(object sender, EventArgs e)
@@ -189,12 +189,12 @@ namespace Web_Auto_Input_and_Test_Tool
         public class CheckProcess
         {
         }
-        public class ChooseWebDriverForm
+        public class ChooseWebDriver
         {
             public MainWindow m1 { get; set; }
             public IWebDriver chromeDriver { get; set;}
             public int WebDriverToken = 0;
-            public void chooseWebDriver()
+            public void createForm()
             {
                 Form chooseDialog = new Form();
                 Button b1 = new Button();
@@ -223,7 +223,7 @@ namespace Web_Auto_Input_and_Test_Tool
             {
                 WebDriverToken = 1;
                 f.Dispose();
-                ChooseInputSector CIS = new ChooseInputSector();
+                ChooseInputModule CIS = new ChooseInputModule();
                 CIS.m1 = m1;
                 CIS.getListOfModule();
             }
@@ -231,15 +231,15 @@ namespace Web_Auto_Input_and_Test_Tool
             {
                 WebDriverToken = 2;
                 f.Dispose();
-                ChooseInputSector CIS = new ChooseInputSector();
+                ChooseInputModule CIS = new ChooseInputModule();
                 CIS.m1 = m1;
                 CIS.getListOfModule();
             }
         }
-        public class ChooseInputSector
+        public class ChooseInputModule
         {
             public MainWindow m1 { get; set; }
-            Form ChooseModuleDialog = new Form();
+            
             private List<InputModule> ModuleList = new List<InputModule>();           
             
             public void getListOfModule()
@@ -253,21 +253,22 @@ namespace Web_Auto_Input_and_Test_Tool
             }
             public void createForm()
             {
+                Form ChooseModuleDialog = new Form();
                 ChooseModuleDialog.StartPosition = FormStartPosition.CenterScreen;
                 ChooseModuleDialog.FormBorderStyle = FormBorderStyle.FixedDialog;                
-                createLable();
-                createButton();
+                createLable(ChooseModuleDialog);
+                createButton(ChooseModuleDialog);
             }
-            public void createLable()
+            public void createLable(Form f)
             {
                 Label l1 = new Label();
-                l1.Text = "Please Choose the Test Module";
+                l1.Text = "Please Choose the fuck Module";
                 l1.Size = new Size(200, 30);
                 l1.Location = new Point(10, 10);
-                ChooseModuleDialog.Controls.Add(l1);
+                f.Controls.Add(l1);
             }
-            public void createButton()
-            {
+            public void createButton(Form f)
+            {                
                 int totalHeight = 0;
                 for (int i = 1; i-1 < ModuleList.Count; i++)
                 {
@@ -275,36 +276,44 @@ namespace Web_Auto_Input_and_Test_Tool
                     {
                         Button bt = new Button();
                         bt.Location = new Point(50, 50 + (bt.Height + 10) * (i - 1));
-                        bt.Click += new EventHandler(buttonClickEvent);
+                        bt.Click += (sender, e) => buttonClickEvent(sender, e, f);
                         bt.Tag = i;
                         bt.Text = ModuleList.ElementAt(i - 1).ModuleName;
-                        ChooseModuleDialog.Controls.Add(bt);
+                        f.Controls.Add(bt);
                         totalHeight = 50 + (bt.Height + 10) * (i - 1);                        
                     }
                     else
                     {
                         Button bt = new Button();
                         bt.Location = new Point(50, 50 + (bt.Height + 10) * (i - 1));
-                        bt.Click += new EventHandler(buttonClickEvent);
+                        bt.Click += (sender, e) => buttonClickEvent(sender, e, f);
                         bt.Tag = i;
                         bt.Text = ModuleList.ElementAt(i - 1).ModuleName;
-                        ChooseModuleDialog.Controls.Add(bt);
+                        f.Controls.Add(bt);
                     }                                     
                 }
-                
-                // Need to improve 
-                ChooseModuleDialog.Size = new Size(200, totalHeight + 100);
-                ChooseModuleDialog.ShowDialog();
+
+               // Need to improve 
+               // Button test = new Button();
+               // test.Location = new Point(50, 250);
+               // test.Click += (sender, e) => testClickEvent(sender, e, f);
+
+               // test.Text = "test";
+               // f.Controls.Add(test);
+
+                f.Size = new Size(200, totalHeight + 100);
+                f.ShowDialog();
             }
-            public void buttonClickEvent(object sender, EventArgs e)
+            public void buttonClickEvent(object sender, EventArgs e, Form f)
             {
                 Button bt = (Button)sender;
-                chooseInput(Convert.ToInt16(bt.Tag));                
+                chooseInput(Convert.ToInt16(bt.Tag));
+                f.Dispose();
             }
             public void chooseInput(int i)
             {            
                 m1.TitleList = ModuleList.ElementAt(i - 1).TitleOfColumns;
-                m1.label2.Text = "Choose Module:" + ModuleList.ElementAt(i - 1).ModuleName;                    
+                m1.label2.Text = "Choose Module:" + ModuleList.ElementAt(i - 1).ModuleName;                
             }
         }
         public class LoadExcel
