@@ -27,7 +27,10 @@ namespace Web_Auto_Input_and_Test_Tool
         public static string LoginSubmitButtonId;
 
         //
-        public static Boolean IsPageTheTarget;
+        public static  Boolean IsPageTheTarget;
+
+        //
+        public static Boolean IsSaveAndEditDifferent;
 
 
     }

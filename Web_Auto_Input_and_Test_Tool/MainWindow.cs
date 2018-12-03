@@ -24,6 +24,7 @@ namespace Web_Auto_Input_and_Test_Tool
         LoadExcel ldExcel = new LoadExcel();
         InputProcess InputProcess1= new InputProcess();
         public string[,] TitleList;
+        int moduleToken { get; set; }
 
         public MainWindow()
         {
@@ -74,7 +75,8 @@ namespace Web_Auto_Input_and_Test_Tool
         }
         private void button4_Click(object sender, EventArgs e)
         {
-           
+            InputProcess1.m1 = this;
+            InputProcess1.mainProcess(moduleToken);
         }
        
         public class LoginProcess
@@ -182,8 +184,13 @@ namespace Web_Auto_Input_and_Test_Tool
         }
         public class InputProcess
         {
-            public void mainProcess(int whichPageToInput)
+            public MainWindow m1 { get; set; }
+            public void mainProcess(int moduleToken)
             {
+                if (m1.dataGridView1.Rows.Count == 0)
+                {
+                    MessageBox.Show("please load the input data first");
+                }
             }
         }
         public class CheckProcess
@@ -313,7 +320,8 @@ namespace Web_Auto_Input_and_Test_Tool
             public void chooseInput(int i)
             {            
                 m1.TitleList = ModuleList.ElementAt(i - 1).TitleOfColumns;
-                m1.label2.Text = "Choose Module: " + ModuleList.ElementAt(i - 1).ModuleName;                
+                m1.label2.Text = "Choose Module: " + ModuleList.ElementAt(i - 1).ModuleName;
+                m1.moduleToken = i;
             }
         }
         public class LoadExcel

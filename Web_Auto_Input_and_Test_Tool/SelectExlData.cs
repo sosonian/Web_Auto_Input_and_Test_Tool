@@ -86,8 +86,13 @@ namespace Web_Auto_Input_and_Test_Tool
                         tArray[i] = temp;
                     }
                     SED.DGVTb.Rows.Add(tArray);
+                    
                 }
                 m1.dataGridView1.DataSource = SED.DGVTb;
+                for (int i = 1; i < SED.dataGridView1.Rows.Count; i++)
+                {
+                    m1.dataGridView1.Rows[i].HeaderCell.Value = i.ToString();
+                }
                 SED.Close();
             }
             public void sendDataBackToMain2()
